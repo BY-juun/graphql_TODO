@@ -1,7 +1,7 @@
-export interface PostAttributes {
+export interface TodoAttributes {
   id: number;
   title: string;
   content: string;
 }
 
-export type PostCreationAttributes = Omit<PostAttributes, "id">;
+export type TodoCreationAttributes = Omit<TodoAttributes, "id">;

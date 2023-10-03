@@ -1,44 +1,44 @@
 import gql from "graphql-tag";
-import { Posts } from "./models/posts";
-import { PostAttributes, PostCreationAttributes } from "./types";
+import { Todos } from "./models/todos";
+import { TodoAttributes, TodoCreationAttributes } from "./types";
 
 export const typeDefs = gql`
-  type Post {
+  type Todo {
     id: ID!
     title: String
     content: String
   }
   type Query {
-    allPosts: [Post!]!
-    getPost(id: ID!): Post
+    allTodos: [Todo!]!
+    getTodo(id: ID!): Todo
   }
   type Mutation {
-    addPost(title: String, content: String): Post
-    editPost(id: ID!, title: String, content: String): Post
-    deletePost(id: ID!): Boolean
+    addTodo(title: String, content: String): Todo
+    editTodo(id: ID!, title: String, content: String): Todo
+    deleteTodo(id: ID!): Boolean
   }
 `;
 
 export const resolvers = {
   Query: {
-    async allPosts() {
-      return await Posts.findAll();
+    async allTodos() {
+      return await Todos.findAll();
     },
-    async getPost(_: any, { id }: Pick<PostAttributes, "id">) {
-      return await Posts.findOne({ where: { id } });
+    async getTodo(_: any, { id }: Pick<TodoAttributes, "id">) {
+      return await Todos.findOne({ where: { id } });
     },
   },
   Mutation: {
-    async addPost(_: any, { title, content }: PostCreationAttributes) {
-      const newPost = await Posts.create({
+    async addTodo(_: any, { title, content }: TodoCreationAttributes) {
+      const newTodo = await Todos.create({
         title,
         content,
       });
-      return newPost;
+      return newTodo;
     },
 
-    async editPost(_: any, { id, title, content }: PostAttributes) {
-      await Posts.update(
+    async editTodo(_: any, { id, title, content }: TodoAttributes) {
+      await Todos.update(
         {
           title,
           content,
@@ -48,9 +48,9 @@ export const resolvers = {
       return { id, title, content };
     },
 
-    async deletePost(_: any, { id }: Pick<PostAttributes, "id">) {
+    async deleteTodo(_: any, { id }: Pick<TodoAttributes, "id">) {
       try {
-        await Posts.destroy({
+        await Todos.destroy({
           where: { id },
         });
       } catch (err) {

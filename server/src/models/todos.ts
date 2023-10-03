@@ -1,14 +1,14 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelizeInstance } from "./index";
-import { PostAttributes, PostCreationAttributes } from "../types";
+import { TodoAttributes, TodoCreationAttributes } from "../types";
 
-export class Posts extends Model<PostAttributes, PostCreationAttributes> {
+export class Todos extends Model<TodoAttributes, TodoCreationAttributes> {
   public id!: number;
   public title!: string;
   public content!: string;
 }
 
-Posts.init(
+Todos.init(
   {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -24,7 +24,7 @@ Posts.init(
       allowNull: false,
     },
   },
-  { sequelize: sequelizeInstance, tableName: "Posts" }
+  { sequelize: sequelizeInstance, tableName: "Todos" }
 );
 
 // (async () => {

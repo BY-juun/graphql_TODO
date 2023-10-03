@@ -1,7 +1,7 @@
-import { Posts } from "./posts";
+import { Todos } from "./todos";
 
 const Tables = {
-  Posts,
+  Todos,
 };
 
 async function createTables() {
