@@ -1,13 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelizeInstance } from "./index";
-
-interface PostAttributes {
-  id: number;
-  title: string;
-  content: string;
-}
-
-type PostCreationAttributes = Omit<PostAttributes, "id">;
+import { PostAttributes, PostCreationAttributes } from "../types";
 
 export class Posts extends Model<PostAttributes, PostCreationAttributes> {
   public id!: number;
