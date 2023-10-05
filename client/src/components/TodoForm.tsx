@@ -24,7 +24,8 @@ const TodoFormWrap = styled.form`
 const TodoForm = () => {
   const titleRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<HTMLInputElement>(null);
-  const [addTodo, { data }] = useMutation<
+
+  const [addTodo] = useMutation<
     { addTodo: TodoAttributes },
     TodoCreationAttributes
   >(ADD_TODO);
